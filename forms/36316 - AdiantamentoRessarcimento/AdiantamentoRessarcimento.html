@@ -35,6 +35,14 @@
 	<input type="hidden" name="hdn_valorRef" id="hdn_valorRef">
 	<input type="hidden" name="hdn_valorTotal" id="hdn_valorTotal">
 
+
+	<input type="hidden" name="txt_dtAlsHidden" id="txt_dtAlsHidden">
+	<input type="hidden" name="dataUtilizacaoHidden" id="dataUtilizacaoHidden">
+	<input type="hidden" name="diferencaDiasHidden" id="diferencaDiasHidden">
+	<input type="hidden" name="dataDaMovimentacaoProRM" id="dataDaMovimentacaoProRM">
+	<input type="hidden" name="diferencaDiasHiddenRM" id="diferencaDiasHiddenRM"> 
+	<input type="hidden" name="analistaHidden" id="analistaHidden" value=""></input>
+
 	<div class="panel panel-primary" id="PedidoPagamento">
 	<div class="panel-heading">
 		<h1><b>Adiantamento & Ressarcimento</b></h1>
@@ -299,17 +307,23 @@
 	<div class="col-md-4">
 	<div class="form-group">
 		<label for="txt_nomeAls">Nome do Analista:</label>
-		<select 
-			name=			"txt_nomeAls" 
-			id=				"txt_nomeAls" 
-			dataset=		"colleague" 
-			datasetkey=		"colleagueId" 
-			datasetvalue=	"colleagueName" 
-			class=			"form-control"
-			readonly>
+		<select name="txt_nomeAls" id="txt_nomeAls" class="form-control">
+			<option value="Selecione">Selecione</option>
+			<option value="Renata">Renata</option>
+			<option value="Flavio">Flávio</option>
+			<option value="Eliana">Eliana</option>
+			<option value="Alziney">Alziney</option>
+			<option value="Adina">Adina</option>
+			<option value="Elder">Elder</option>
+			<option value="Terezinha">Terezinha</option>
+			<option value="Wagner">Wagner</option>
+			<option value="Rayanne">Rayanne</option>
+			<option value="Monica">Mônica</option>
+			<option value="Joyce">Joyce</option>
 		</select>
 	</div>
 	</div>
+	
 	<div class="col-md-4">
 	<div class="form-group">
 		<label for="txt_dtAls">Data e Hora:</label>
@@ -731,7 +745,12 @@
 				console.log(lastState)
 				errorMsg += "\n A Solicitação deve ser retornada para a atividade PC Ressarcimento." + "</b>" + endofline;
 				if (errorMsg.trim().isEmpty() == false) throw "\n" + errorMsg;
-			} if (lastState == 19 && numState == 15 && nextState != lastState) {
+			} if (lastState == 11 && numState == 15 && nextState != lastState) {
+				console.log(lastState)
+				errorMsg += "\n A Solicitação deve ser retornada para a Aprovação da Diretoria." + "</b>" + endofline;
+				if (errorMsg.trim().isEmpty() == false) throw "\n" + errorMsg;
+			}  
+			if (lastState == 19 && numState == 15 && nextState != lastState) {
 				console.log(lastState)
 				errorMsg += "\n A Solicitação deve ser retornada para a atividade Análise de Documentação." + "</b>" + endofline;
 				if (errorMsg.trim().isEmpty() == false) throw "\n" + errorMsg;
@@ -767,6 +786,49 @@
 				console.log(lastState)
 			} 
 		}
+
+			let dataAnalise = document.getElementById("txt_dtPag").value;
+			let dataDaAnaliseDoAgendamento = dataAnalise.split("-").reverse().join("-");
+
+			let nomeDoAnalista = document.getElementById("txt_nomeAls").value;
+
+			let dataFinalDeUtilizacao = document.getElementById("dataUtilizacao2").value;
+			let partesData = dataFinalDeUtilizacao.split("-");
+			let ano = partesData[0];
+			let mes = partesData[1];
+			let dia = partesData[2];
+			let dataDeUtilizacao = dia + "/" + mes + "/" + ano;
+
+			document.getElementById("txt_dtAlsHidden").value = dataDaAnaliseDoAgendamento;
+			document.getElementById("dataUtilizacaoHidden").value = dataDeUtilizacao;	
+			document.getElementById("analistaHidden").value = nomeDoAnalista;
+			
+			
+			let z = dataDaAnaliseDoAgendamento.split("-")[0]
+			let b = dataDeUtilizacao.split("/")[0]
+			let diferencaDias = Math.abs(z - b);
+
+			document.getElementById("diferencaDiasHidden").value =  diferencaDias;
+		
+			// analytics ADIANTAMENTO : analistaHidden txt_dtAlsHidden  dataUtilizacaoHidden   diferencaDiasHidden
+			// analytics RESSARCIMENTO : analistaHidden txt_dtAlsHidden  dataDaMovimentacaoProRM   diferencaDiasHiddenRM
+
+			let solAtual = document.getElementById("txt_NumProc").value;
+			let c = DatasetFactory.createConstraint("processHistoryPK.processInstanceId", solAtual, solAtual, ConstraintType.MUST);
+			let cc = DatasetFactory.createConstraint("stateSequence", '20', '20', ConstraintType.MUST);
+			let constraint = new Array(c,cc);
+
+			let dataset = DatasetFactory.getDataset("processHistory", null, constraint, null);
+			let dateTime = new Date(dataset.values[0].movementDatetime)	
+			let dataMovimentacaoRM = `${dateTime.getDate().toString().padStart(2, '0')}/${(dateTime.getMonth() + 1).toString().padStart(2, '0')}/${dateTime.getFullYear()}`;
+
+			document.getElementById("dataDaMovimentacaoProRM").value = dataMovimentacaoRM;
+
+			let d = dataMovimentacaoRM.split("/")[0]
+			let diferencaDiasRM = Math.abs(z - d);
+	
+			document.getElementById("diferencaDiasHiddenRM").value =  diferencaDiasRM;
+
 	</script>
 </form>
 </div>

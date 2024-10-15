@@ -29,7 +29,7 @@
     <processDefinitionVersionPK>
       <companyId>1</companyId>
       <processId>Adiantamento e Ressarcimento / Prestação de Contas</processId>
-      <version>47</version>
+      <version>49</version>
     </processDefinitionVersionPK>
     <versionDescription></versionDescription>
     <formId>36316</formId>
@@ -1630,7 +1630,7 @@
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
         <expressionOrder>1</expressionOrder>
-        <version>47</version>
+        <version>49</version>
         <sequence>7</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1642,7 +1642,7 @@
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
         <expressionOrder>2</expressionOrder>
-        <version>47</version>
+        <version>49</version>
         <sequence>7</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1654,7 +1654,7 @@
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
         <expressionOrder>1</expressionOrder>
-        <version>47</version>
+        <version>49</version>
         <sequence>69</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1666,10 +1666,10 @@
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
         <expressionOrder>2</expressionOrder>
-        <version>47</version>
+        <version>49</version>
         <sequence>69</sequence>
       </conditionProcessStatePK>
-      <condition></condition>
+      <condition>false</condition>
       <destinationSequenceId>140</destinationSequenceId>
       <conditionType>1</conditionType>
     </ConditionProcessState>
@@ -1678,7 +1678,7 @@
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
         <expressionOrder>1</expressionOrder>
-        <version>47</version>
+        <version>49</version>
         <sequence>85</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1690,10 +1690,10 @@
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
         <expressionOrder>2</expressionOrder>
-        <version>47</version>
+        <version>49</version>
         <sequence>85</sequence>
       </conditionProcessStatePK>
-      <condition></condition>
+      <condition>false</condition>
       <destinationSequenceId>91</destinationSequenceId>
       <conditionType>1</conditionType>
     </ConditionProcessState>
@@ -1702,7 +1702,7 @@
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
         <expressionOrder>3</expressionOrder>
-        <version>47</version>
+        <version>49</version>
         <sequence>85</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1714,7 +1714,7 @@
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
         <expressionOrder>1</expressionOrder>
-        <version>47</version>
+        <version>49</version>
         <sequence>133</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -1726,7 +1726,7 @@
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
         <expressionOrder>2</expressionOrder>
-        <version>47</version>
+        <version>49</version>
         <sequence>133</sequence>
       </conditionProcessStatePK>
       <condition>false</condition>
@@ -2891,6 +2891,40 @@
       <defaultLink>false</defaultLink>
       <type>0</type>
     </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>AdiantamentoRessarcimento</processId>
+        <version>1</version>
+        <linkSequence>143</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>11</initialStateSequence>
+      <finalStateSequence>15</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
+    <ProcessLink>
+      <processLinkPK>
+        <companyId>1</companyId>
+        <processId>AdiantamentoRessarcimento</processId>
+        <version>1</version>
+        <linkSequence>144</linkSequence>
+      </processLinkPK>
+      <actionLabel></actionLabel>
+      <returnPermited>false</returnPermited>
+      <initialStateSequence>15</initialStateSequence>
+      <finalStateSequence>11</finalStateSequence>
+      <returnLabel></returnLabel>
+      <name></name>
+      <automaticLink>false</automaticLink>
+      <defaultLink>false</defaultLink>
+      <type>0</type>
+    </ProcessLink>
   </list>
   <list/>
   <list>
@@ -2997,6 +3031,32 @@
     <WorkflowProcessEvent>
       <workflowProcessEventPK>
         <companyId>1</companyId>
+        <eventId>beforeSendData</eventId>
+        <processId>AdiantamentoRessarcimento</processId>
+        <version>1</version>
+      </workflowProcessEventPK>
+      <eventDescription>function beforeSendData(customField,customFacts){
+
+    customField[0] = hAPI.getCardValue(&apos;txt_dtAlsHidden&apos;);  //data da analise
+    
+    customField[1] = hAPI.getCardValue(&apos;dataUtilizacaoHidden&apos;); // data de inicio da utilizacao
+    
+    customField[2] = hAPI.getCardValue(&apos;analistaHidden&apos;); //analista
+    
+    customField[3] = hAPI.getCardValue(&apos;diferencaDiasHidden&apos;);// data da analise - data de inicio da utilizacao
+    
+    customField[4] = hAPI.getCardValue(&apos;dataDaMovimentacaoProRM&apos;); //data de movimentação para o rm
+    
+    customField[5] = hAPI.getCardValue(&apos;diferencaDiasHiddenRM&apos;); //data da analise - data de mov pro rm
+
+    customField[6] = hAPI.getCardValue(&apos;slc_PagamentoPara&apos;);  // 1 = adiantamento | 2 = ressarcimento
+
+}
+</eventDescription>
+    </WorkflowProcessEvent>
+    <WorkflowProcessEvent>
+      <workflowProcessEventPK>
+        <companyId>1</companyId>
         <eventId>servicetask119</eventId>
         <processId>AdiantamentoRessarcimento</processId>
         <version>1</version>
@@ -3024,7 +3084,7 @@
         <version>1</version>
       </workflowProcessEventPK>
       <eventDescription>function rowResponsibility (){ &#xd;
-	/*var clientService = fluigAPI.getAuthorizeClientService();&#xd;
+    /* var clientService = fluigAPI.getAuthorizeClientService();&#xd;
     var data = {&#xd;
         companyId : getValue(&apos;WKCompany&apos;) + &apos;&apos;,&#xd;
         serviceCode : &apos;filaEletronica&apos;,&#xd;
@@ -3043,20 +3103,23 @@
         throw new Exception(&apos;Retorno está vazio&apos;);&#xd;
     }else{&#xd;
         var response = JSON.parse(resp_prmsUserNow.getResult());&#xd;
+        hrs = dateNow.getHours()&#xd;
+        log.info(&apos;*************************************************************************************************************************************  time &apos;+dateNow) &#xd;
         log.info(&apos;*************************************************************************************************************************************  &apos;+resp_prmsUserNow.getResult()) &#xd;
-        if(dateNow.getHours() &gt;= 14 &amp;&amp; response.respNow == &apos;00000622&apos;){ // 00000622 matricula RENATA, usuária com hórario de trabalho diferente&#xd;
+        if(hrs &gt;= 14 &amp;&amp; response.respNow == &apos;00000622&apos;){ // 00000622 matricula RENATA, usuária com hórario de trabalho diferente&#xd;
+            log.info(&apos;*************************************************************************************************************************************  new req &apos;)&#xd;
+            log.info(&apos;*************************************************************************************************************************************  hr &apos;+hrs) &#xd;
             resp_prmsUserNow = clientService.invoke(JSON.stringify(data));&#xd;
-            let resValues = response.respNow&#xd;
-            log.info(&apos;*************************************************************************************************************************************  response&apos;+resValues) &#xd;
+            responseNew = JSON.parse(resp_prmsUserNow.getResult());&#xd;
+            let resValues = responseNew.respNow&#xd;
             hAPI.setCardValue(&apos;hdn_userResp&apos;, resValues);        &#xd;
             log.info(&apos;*************************************************************************************************************************************  response&apos;+resValues) &#xd;
         }else{&#xd;
             let resValues = response.respNow&#xd;
-            log.info(&apos;*************************************************************************************************************************************  response&apos;+resValues) &#xd;
             hAPI.setCardValue(&apos;hdn_userResp&apos;, resValues);        &#xd;
             log.info(&apos;*************************************************************************************************************************************  response&apos;+resValues) &#xd;
         }&#xd;
-    }*/&#xd;
+    } */&#xd;
 }</eventDescription>
     </WorkflowProcessEvent>
   </list>
@@ -3182,7 +3245,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>13</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3193,7 +3256,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>13</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3204,7 +3267,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>13</linkSequence>
         <bendSequence>3</bendSequence>
       </processLinkBendPK>
@@ -3215,7 +3278,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>16</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3226,7 +3289,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>44</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3237,7 +3300,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>46</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3248,7 +3311,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>56</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3259,7 +3322,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>56</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3270,7 +3333,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>63</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3281,7 +3344,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>68</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3292,7 +3355,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>68</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3303,7 +3366,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>71</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3314,7 +3377,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>71</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3325,7 +3388,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>71</linkSequence>
         <bendSequence>3</bendSequence>
       </processLinkBendPK>
@@ -3336,7 +3399,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>71</linkSequence>
         <bendSequence>4</bendSequence>
       </processLinkBendPK>
@@ -3347,7 +3410,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>99</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3358,7 +3421,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>99</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3369,7 +3432,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>99</linkSequence>
         <bendSequence>3</bendSequence>
       </processLinkBendPK>
@@ -3380,7 +3443,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>108</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3391,7 +3454,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>108</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3402,7 +3465,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>108</linkSequence>
         <bendSequence>3</bendSequence>
       </processLinkBendPK>
@@ -3413,7 +3476,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>108</linkSequence>
         <bendSequence>4</bendSequence>
       </processLinkBendPK>
@@ -3424,7 +3487,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>109</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3435,7 +3498,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>109</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3446,7 +3509,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>109</linkSequence>
         <bendSequence>3</bendSequence>
       </processLinkBendPK>
@@ -3457,7 +3520,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>111</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3468,7 +3531,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>111</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3479,7 +3542,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>111</linkSequence>
         <bendSequence>3</bendSequence>
       </processLinkBendPK>
@@ -3490,7 +3553,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>111</linkSequence>
         <bendSequence>4</bendSequence>
       </processLinkBendPK>
@@ -3501,7 +3564,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>112</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3512,7 +3575,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>112</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3523,7 +3586,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>112</linkSequence>
         <bendSequence>3</bendSequence>
       </processLinkBendPK>
@@ -3534,7 +3597,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>125</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3545,7 +3608,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>127</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3556,7 +3619,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>135</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3567,7 +3630,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>135</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3578,7 +3641,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>138</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3589,7 +3652,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>138</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3600,7 +3663,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>139</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -3611,7 +3674,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>139</linkSequence>
         <bendSequence>2</bendSequence>
       </processLinkBendPK>
@@ -3622,7 +3685,7 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>139</linkSequence>
         <bendSequence>3</bendSequence>
       </processLinkBendPK>
@@ -3633,12 +3696,45 @@
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>AdiantamentoRessarcimento</processId>
-        <version>47</version>
+        <version>49</version>
         <linkSequence>139</linkSequence>
         <bendSequence>4</bendSequence>
       </processLinkBendPK>
       <positionX>479</positionX>
       <positionY>220</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>AdiantamentoRessarcimento</processId>
+        <version>49</version>
+        <linkSequence>143</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>492</positionX>
+      <positionY>271</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>AdiantamentoRessarcimento</processId>
+        <version>49</version>
+        <linkSequence>144</linkSequence>
+        <bendSequence>1</bendSequence>
+      </processLinkBendPK>
+      <positionX>492</positionX>
+      <positionY>269</positionY>
+    </ProcessLinkBend>
+    <ProcessLinkBend>
+      <processLinkBendPK>
+        <companyId>1</companyId>
+        <processId>AdiantamentoRessarcimento</processId>
+        <version>49</version>
+        <linkSequence>144</linkSequence>
+        <bendSequence>2</bendSequence>
+      </processLinkBendPK>
+      <positionX>450</positionX>
+      <positionY>296</positionY>
     </ProcessLinkBend>
   </list>
   <list/>
@@ -3674,7 +3770,7 @@
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>AdiantamentoRessarcimento</processId>
-      <processVersion>47</processVersion>
+      <processVersion>49</processVersion>
       <stateSequence>5</stateSequence>
       <appKey>approval</appKey>
       <appField>title</appField>
@@ -3684,7 +3780,7 @@
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>AdiantamentoRessarcimento</processId>
-      <processVersion>47</processVersion>
+      <processVersion>49</processVersion>
       <stateSequence>5</stateSequence>
       <appKey>approval</appKey>
       <appField>description</appField>
@@ -3700,7 +3796,7 @@
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>AdiantamentoRessarcimento</processId>
-      <processVersion>47</processVersion>
+      <processVersion>49</processVersion>
       <stateSequence>5</stateSequence>
       <appKey>approval</appKey>
       <appField>highlight</appField>
@@ -3710,7 +3806,7 @@
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>AdiantamentoRessarcimento</processId>
-      <processVersion>47</processVersion>
+      <processVersion>49</processVersion>
       <stateSequence>5</stateSequence>
       <appKey>approval</appKey>
       <appField>approve</appField>
@@ -3720,7 +3816,7 @@
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>AdiantamentoRessarcimento</processId>
-      <processVersion>47</processVersion>
+      <processVersion>49</processVersion>
       <stateSequence>5</stateSequence>
       <appKey>approval</appKey>
       <appField>reject</appField>
@@ -3730,7 +3826,7 @@
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>AdiantamentoRessarcimento</processId>
-      <processVersion>47</processVersion>
+      <processVersion>49</processVersion>
       <stateSequence>11</stateSequence>
       <appKey>approval</appKey>
       <appField>title</appField>
@@ -3740,7 +3836,7 @@
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>AdiantamentoRessarcimento</processId>
-      <processVersion>47</processVersion>
+      <processVersion>49</processVersion>
       <stateSequence>11</stateSequence>
       <appKey>approval</appKey>
       <appField>description</appField>
@@ -3750,7 +3846,7 @@
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>AdiantamentoRessarcimento</processId>
-      <processVersion>47</processVersion>
+      <processVersion>49</processVersion>
       <stateSequence>11</stateSequence>
       <appKey>approval</appKey>
       <appField>highlight</appField>
@@ -3760,7 +3856,7 @@
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>AdiantamentoRessarcimento</processId>
-      <processVersion>47</processVersion>
+      <processVersion>49</processVersion>
       <stateSequence>11</stateSequence>
       <appKey>approval</appKey>
       <appField>approve</appField>
@@ -3770,7 +3866,7 @@
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>AdiantamentoRessarcimento</processId>
-      <processVersion>47</processVersion>
+      <processVersion>49</processVersion>
       <stateSequence>11</stateSequence>
       <appKey>approval</appKey>
       <appField>reject</appField>
@@ -3780,7 +3876,7 @@
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>AdiantamentoRessarcimento</processId>
-      <processVersion>47</processVersion>
+      <processVersion>49</processVersion>
       <stateSequence>74</stateSequence>
       <appKey>approval</appKey>
       <appField>title</appField>
@@ -3790,7 +3886,7 @@
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>AdiantamentoRessarcimento</processId>
-      <processVersion>47</processVersion>
+      <processVersion>49</processVersion>
       <stateSequence>74</stateSequence>
       <appKey>approval</appKey>
       <appField>description</appField>
@@ -3804,7 +3900,7 @@
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>AdiantamentoRessarcimento</processId>
-      <processVersion>47</processVersion>
+      <processVersion>49</processVersion>
       <stateSequence>74</stateSequence>
       <appKey>approval</appKey>
       <appField>highlight</appField>
@@ -3814,7 +3910,7 @@
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>AdiantamentoRessarcimento</processId>
-      <processVersion>47</processVersion>
+      <processVersion>49</processVersion>
       <stateSequence>74</stateSequence>
       <appKey>approval</appKey>
       <appField>approve</appField>
@@ -3824,7 +3920,7 @@
       <id>0</id>
       <tenantId>0</tenantId>
       <processId>AdiantamentoRessarcimento</processId>
-      <processVersion>47</processVersion>
+      <processVersion>49</processVersion>
       <stateSequence>74</stateSequence>
       <appKey>approval</appKey>
       <appField>reject</appField>

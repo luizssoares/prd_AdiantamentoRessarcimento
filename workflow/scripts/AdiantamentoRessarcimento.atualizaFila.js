@@ -1,7 +1,7 @@
 function rowResponsibility (){ 
     var clientService = fluigAPI.getAuthorizeClientService();
     var data = {
-        companyId : getValue("WKCompany") + '',
+        companyId : getValue('WKCompany') + '',
         serviceCode : 'filaEletronica',
         endpoint : '/responsavel', 
         method : 'get',// 'delete', 'patch', 'put', 'get'     
@@ -15,7 +15,7 @@ function rowResponsibility (){
     dateNow = new Date()
     var resp_prmsUserNow = clientService.invoke(JSON.stringify(data));
     if(resp_prmsUserNow.getResult()== null || resp_prmsUserNow.getResult().isEmpty()){
-        throw new Exception("Retorno está vazio");
+        throw new Exception('Retorno está vazio');
     }else{
         var response = JSON.parse(resp_prmsUserNow.getResult());
         hrs = dateNow.getHours()

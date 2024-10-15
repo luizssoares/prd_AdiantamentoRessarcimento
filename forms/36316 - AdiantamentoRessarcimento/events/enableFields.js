@@ -41,7 +41,7 @@ function enableFields(form){
 	}
 	if(Now_State == 22 || Now_State == 21){
 		disableAllFields(form)
-		fields = ["txt_dtPag", "txt_dtProv"]
+		fields = ["txt_dtPag", "txt_dtProv", "txt_nomeAls"]
         enableFieldsFromList(form, fields);
 	}
 	if(Now_State == 48){
